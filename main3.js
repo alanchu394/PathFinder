@@ -142,7 +142,7 @@ function draw(){
                     openSet.splice(i,1);
                     currentNode.tag = 4;
                 }
-                //test
+
             }   
             //if goal is found
             if(currentNode == grid[endX][endY]){
