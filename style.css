@@ -1,0 +1,45 @@
+@font-face{
+    src: url(Montserrat-Light.ttf);
+    font-family: nos;
+}
+body {
+  padding: 20px;
+}
+
+#defaultCanvas0{
+    position: absolute;
+    top: 50px;
+    left: 250px;
+}
+
+
+.buttons p{
+    padding: 10px;
+    background-color: white;
+    border: 1px black solid;
+    transition: .3s ease;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: nos;
+    font-weight: 700;
+}
+
+.buttons p:hover{
+    background-color: rgb(190, 190, 255);
+}
+
+.start{
+    width: 150px;
+}
+
+.stop{
+    width: 150px;
+}
+
+.obstacle{
+    width: 150px;
+}
+
+.reset{
+    width: 150px;
+}
