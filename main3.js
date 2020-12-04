@@ -93,8 +93,8 @@ function node(i,j){
 
 function setup(){
     createCanvas(Math.floor((window.innerWidth-350)/25)*25,Math.floor((window.innerHeight-100)/25)*25);
-
-    console.log(nodeH);
+    
+    
     console.log("test");
     
     //create grid
@@ -114,7 +114,7 @@ function setup(){
 
     grid[endX][endY].tag= 3;
     console.log('A*');
-
+    
 
 
 }
@@ -247,9 +247,10 @@ function start(){
 
 }
 function pause(){
-    status = 0;
+    status = 2;
 }
 function GenerateObstacle(){
+    if(status == 0){
     if(openSet.length == 0){
         grid[startX][startY].g = 0;
         grid[startX][startY].f = dist(startX,startY,endX,endY);
@@ -269,6 +270,7 @@ function GenerateObstacle(){
             }
         }
     }
+}
 }
 
 function mouseDragged(){
