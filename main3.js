@@ -1,6 +1,6 @@
 
 var cols = Math.floor((window.innerWidth-350)/25);;
-var rows =  Math.floor((window.innerHeight-100)/25);;
+var rows =  Math.floor((window.innerHeight-125)/25);;
 var startX = 0;
 var startY = 0;
 var endY = rows-1;
@@ -13,6 +13,7 @@ var nodeW = 25;
 var grid = new Array(cols);
 var currentNode;
 var generate = 0;
+
 
 function findMin(x){
     var minF = [];
@@ -92,10 +93,8 @@ function node(i,j){
 }
 
 function setup(){
-    createCanvas(Math.floor((window.innerWidth-350)/25)*25,Math.floor((window.innerHeight-100)/25)*25);
-    
-    
-    console.log("test");
+    createCanvas(Math.floor((window.innerWidth-350)/25)*25,Math.floor((window.innerHeight-125)/25)*25);
+
     
     //create grid
     for(var i = 0; i < cols; i++){
@@ -117,6 +116,7 @@ function setup(){
     
 
 
+
 }
 
 
@@ -128,6 +128,7 @@ function draw(){
             grid[i][j].show();
         }
     }
+
     if(status == 1){
         if(openSet.length > 0){
             //find currentNode from openSet
@@ -142,7 +143,6 @@ function draw(){
                     openSet.splice(i,1);
                     currentNode.tag = 4;
                 }
-
             }   
             //if goal is found
             if(currentNode == grid[endX][endY]){
@@ -166,7 +166,7 @@ function draw(){
                 grid[startX][startY].tag =6;
                 grid[endX][endY].tag =6;
                 openSet = [];
-                status = 0;
+                status = 2;
                 
             }else{
             var children = [];
@@ -241,36 +241,32 @@ function draw(){
     
 
 }
-
+function reset(){
+    setup();
+}
 function start(){
     status = 1;
 
 }
 function pause(){
-    status = 2;
+    status = 3;
 }
 function GenerateObstacle(){
-    if(status == 0){
-    if(openSet.length == 0){
-        grid[startX][startY].g = 0;
-        grid[startX][startY].f = dist(startX,startY,endX,endY);
-        openSet.push(grid[startX][startY]);
-    }
-    grid[startX][startY].tag = 2;
-    grid[endX][endY].tag = 3;
-    for(var i = 0; i < cols; i ++){
-        for(var j = 0; j < rows; j++)
-        {
-            if(!(i == startX && j == startY) && !(i == endX && j == endY)){
-                if(random(1)<.4){
-                    grid[i][j].tag = 1;
-                }else{
-                    grid[i][j].tag = 0;
+    if(status != 1 && status != 3){
+        setup();
+        for( i = 0; i < cols; i ++){
+            for( j = 0; j < rows; j++)
+            {
+                if(!(i == startX && j == startY) && !(i == endX && j == endY)){
+                    if(random(1)<.4){
+                        grid[i][j].tag = 1;
+                    }else{
+                        grid[i][j].tag = 0;
+                    }
                 }
             }
         }
     }
-}
 }
 
 function mouseDragged(){
